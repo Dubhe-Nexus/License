@@ -1,0 +1,841 @@
+<!-- Copyright (c) 2026 Dubhe Nexus Innovation and Research Studio -->
+<!-- Licensed under MIT License -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dubhe Nexus Software Open Source License</title>
+    <link rel="icon" type="image/jpeg" href="https://www.dubhenexus.org/images/Dubhe Nexus 1.1.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://www.dubhenexus.org/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .licenses-hero {
+            position: relative;
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #efefef;
+            background: linear-gradient(165deg, #fafafa 0%, #ffffff 100%);
+        }
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 7rem 2rem 4rem;
+            width: 100%;
+            animation: fadeInUp 0.9s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .hero-tag {
+            font-size: 14px;
+            letter-spacing: 0.4em;
+            color: #9b9b9b;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 3.6rem);
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #111;
+            animation: fadeInUp 0.7s ease-out 0.05s both;
+        }
+        .hero-title .sub {
+            display: block;
+            font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+            font-weight: 300;
+            color: #888;
+            letter-spacing: 0.08em;
+            margin-top: 0.5rem;
+        }
+        .hero-desc {
+            max-width: 48rem;
+            margin-top: 1.8rem;
+            animation: fadeInUp 0.7s ease-out 0.1s both;
+        }
+        .hero-desc p {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.65);
+            line-height: 1.6;
+            font-weight: 300;
+            border-left: 2px solid #cfcfcf;
+            padding-left: 1.25rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .fade-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .combo-table-wrap {
+            overflow-x: auto;
+            border-radius: 0.75rem;
+            border: 1px solid #efefef;
+            background: #fff;
+            margin: 1.2rem 0;
+        }
+        .combo-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            min-width: 450px;
+        }
+        .combo-table th {
+            background: #fafafa;
+            font-weight: 450;
+            padding: 0.65rem 1rem;
+            text-align: left;
+            color: #444;
+            border-bottom: 2px solid #e8e8e8;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+        .combo-table td {
+            padding: 0.55rem 1rem;
+            border-bottom: 1px solid #f3f3f3;
+            color: #555;
+            font-size: 0.82rem;
+        }
+        .combo-table tr:last-child td { border-bottom: none; }
+        .combo-table tr:hover td { background: #fafafa; }
+        .combo-table .id-col { font-weight: 500; color: #222; white-space: nowrap; }
+        .combo-table .badge-sm {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .combo-table .badge-sm.att { background: #eff6ff; color: #2563eb; }
+        .combo-table .badge-sm.nc  { background: #f5f3ff; color: #7c3aed; }
+        .combo-table .badge-sm.ref { background: #fffbeb; color: #d97706; }
+        .combo-table .badge-sm.sl  { background: #ecfdf5; color: #059669; }
+
+        .module-detail {
+            background: #ffffff;
+            border: 1px solid #ededed;
+            border-radius: 1.25rem;
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+        .module-detail:hover {
+            border-color: #d4d4d4;
+            box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+        }
+        .module-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 1.25rem 0 0 1.25rem;
+        }
+        .module-detail.att::before { background: linear-gradient(180deg, #3b82f6, #93c5fd); }
+        .module-detail.nc::before  { background: linear-gradient(180deg, #8b5cf6, #c4b5fd); }
+        .module-detail.ref::before { background: linear-gradient(180deg, #f59e0b, #fcd34d); }
+        .module-detail.sl::before  { background: linear-gradient(180deg, #10b981, #6ee7b7); }
+
+        .module-detail-header {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+        .module-detail-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        .module-detail-code {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #5a5a5a;
+            font-weight: 500;
+        }
+        .module-detail.att .module-detail-code { background: #eff6ff; color: #2563eb; }
+        .module-detail.nc  .module-detail-code { background: #f5f3ff; color: #7c3aed; }
+        .module-detail.ref .module-detail-code { background: #fffbeb; color: #d97706; }
+        .module-detail.sl  .module-detail-code { background: #ecfdf5; color: #059669; }
+
+        .module-detail-body {
+            font-size: 0.87rem;
+            line-height: 1.7;
+            color: #2d2d2d;
+        }
+        .module-detail-body p {
+            margin-bottom: 0.8rem;
+        }
+        .module-detail-body ol, .module-detail-body ul {
+            padding-left: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .module-detail-body li {
+            margin-bottom: 0.5rem;
+            font-weight: 320;
+        }
+        .module-detail-body .clause-title {
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        .module-detail-body .sub-clause {
+            padding-left: 1.5rem;
+            list-style-type: lower-alpha;
+        }
+
+        .interaction-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 0.75rem;
+            padding: 1rem 1.3rem;
+            margin: 1.5rem 0;
+        }
+        .interaction-box p {
+            font-size: 0.8rem;
+            color: #78350f;
+            line-height: 1.6;
+            margin-bottom: 0.3rem;
+        }
+        .interaction-box .clause-title {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #92400e;
+        }
+
+        .legal-section {
+            background: #fbfbfb;
+            border: 1px solid #ededed;
+            border-radius: 1.25rem;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+        }
+        .legal-section h2 {
+            font-size: 1.5rem;
+            font-weight: 350;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.8rem;
+            color: #111;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 1rem;
+        }
+        .legal-article {
+            margin-bottom: 2rem;
+        }
+        .legal-article-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+        }
+        .legal-article-body {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #3a3a3a;
+        }
+        .legal-article-body p { margin-bottom: 0.5rem; }
+        .legal-article-body ol { padding-left: 1.5rem; }
+        .legal-article-body li { margin-bottom: 0.4rem; font-weight: 320; }
+
+        .divider-light {
+            height: 1px;
+            background: #efefef;
+            margin: 2rem 0;
+        }
+
+        .intro-text {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+            max-width: 52rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            background: #fff;
+            border-top: 1px solid #efefef;
+            padding: 4rem 2rem 2.5rem;
+            margin-top: 2rem;
+        }
+        .footer-inner { max-width: 1280px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+        .footer-brand .footer-logo {
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 0.75rem;
+        }
+        .footer-contact { text-align: right; }
+        @media (max-width: 768px) { .footer-contact { text-align: left; } }
+        .footer-contact h4 {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        .footer-contact a {
+            display: block;
+            font-size: 0.875rem;
+            color: #3a3a3a;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: all 0.3s;
+        }
+        .footer-contact a:hover {
+            color: #000;
+            transform: translateX(-4px);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .footer-copyright {
+            max-width: 1280px;
+            margin: 2.5rem auto 0;
+            padding-top: 1.8rem;
+            border-top: 1px solid #ececec;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 10px;
+            color: #aaa;
+        }
+        @media (max-width: 768px) { .footer-copyright { flex-direction: column; align-items: flex-start; } }
+
+        @media (max-width: 768px) {
+            .module-detail { padding: 1.5rem; }
+            .module-detail-name { font-size: 1.1rem; }
+            .legal-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="glass-nav" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="https://www.dubhenexus.org/images/Dubhe Nexus Web.jpg" alt="Logo">
+            </a>
+             <div class="nav-links">
+                <a href="zh.html" class="lang-switch"><i data-lucide="languages"></i>ENG</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="licenses-hero">
+        <div class="hero-content">
+            <div class="hero-tag">Open Source License</div>
+            <h1 class="hero-title">
+                Dubhe Nexus Software Open Source License
+            </h1>
+            <div class="hero-desc">
+                <p>The Dubhe Nexus Software Open Source License is a modular open-source software licensing framework.
+                This license aims to balance open sharing with rights protection. It is particularly suitable for
+                developers and studios who prioritize intellectual property attribution, wish to restrict commercial
+                abuse, and seek to maintain an original creative ecosystem.</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+
+            <div class="section-label fade-up" style="padding-top: 2.5rem;">Available Combinations</div>
+
+            <div class="combo-table-wrap fade-up">
+                <table class="combo-table">
+                    <thead>
+                        <tr>
+                            <th>License Identifier</th>
+                            <th>Included Modules</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="id-col">ATT</td><td><span class="badge-sm att">ATT</span></td><td>Attribution</td></tr>
+                        <tr><td class="id-col">REF</td><td><span class="badge-sm ref">REF</span></td><td>Reference-Only</td></tr>
+                        <tr><td class="id-col">NC</td><td><span class="badge-sm nc">NC</span></td><td>Non-Commercial</td></tr>
+                        <tr><td class="id-col">SL</td><td><span class="badge-sm sl">SL</span></td><td>Same-License</td></tr>
+                        <tr><td class="id-col">ATT-NC</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span></td><td>Attribution + Non-Commercial</td></tr>
+                        <tr><td class="id-col">ATT-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm sl">SL</span></td><td>Attribution + Same-License</td></tr>
+                        <tr><td class="id-col">REF-SL</td><td><span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>Reference-Only + Same-License</td></tr>
+                        <tr><td class="id-col">ATT-NC-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm sl">SL</span></td><td>Attribution + Non-Commercial + Same-License</td></tr>
+                        <tr><td class="id-col">ATT-NC-REF</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span></td><td>Attribution + Non-Commercial + Reference-Only</td></tr>
+                        <tr><td class="id-col">NC-REF-SL</td><td><span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>Non-Commercial + Reference-Only + Same-License</td></tr>
+                        <tr><td class="id-col">ATT-NC-REF-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>Attribution + Non-Commercial + Reference-Only + Same-License</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="divider-light fade-up"></div>
+
+            <!-- ── ATT ── -->
+            <div class="module-detail att fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">Attribution</span>
+                    <span class="module-detail-code">ATT</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">Article 1: Authorization Terms and Restrictions</p>
+                    <p>Subject to your compliance with all terms of this License, the Licensor (Dubhe Nexus Innovation
+                    and Research Studio) grants you the right to use, copy, modify, and distribute this Software. When
+                    exercising the above rights, you must strictly fulfill the following attribution obligations:</p>
+                    <ol>
+                        <li><strong>Retention of Notices:</strong> You must retain intact all original copyright notices,
+                        the text of this License, disclaimers, and any additional rights notices in all distributed copies
+                        (including both object code and source code, whether modified or not).</li>
+                        <li><strong>Indication of Source:</strong> You must clearly declare the original source of the
+                        Software in a reasonable and prominent location (such as the README file, the Software's "About"
+                        page, or the bottom bar of the user interface) in any derivative works or distributed copies. You
+                        must retain a hyperlink or logo pointing to "Dubhe Nexus Innovation and Research Studio". In
+                        environments where hyperlinks cannot be provided (e.g., offline distribution copies, physical
+                        media), you must completely state the full name of the Licensor and the official URL in text
+                        format.</li>
+                        <li><strong>Explicit Specification of Changes:</strong> If you have modified the source code of
+                        the Software in any way, you must objectively state the content of the modification, the identity
+                        of the modifier, and the specific date of the modification in a prominent location within the
+                        modified file (such as in the file header comments).</li>
+                        <li><strong>Prohibition of Improper Endorsement:</strong> Unless separate written permission is
+                        obtained, you may not, in exercising your right of attribution, explicitly or implicitly cause the
+                        audience to mistakenly believe that the Licensor sponsors, endorses, or provides official backing
+                        for your modifications, derivative works, or use cases.</li>
+                    </ol>
+                    <p class="clause-title">Article 2: Scope of Application and Exceptions</p>
+                    <ol>
+                        <li><strong>Scope:</strong> The binding effect of this module extends to any form of public
+                        display, distribution, deployment, and derivative creation of this Software.</li>
+                        <li><strong>Exceptions (Waiver):</strong> If the Licensor actively requests the removal of the
+                        attribution information due to the derivative work involving illegal, infringing, discriminatory,
+                        or other inappropriate content, or because the Licensor does not wish to be associated with the
+                        derivative work, you must, to the extent reasonably practicable, remove the relevant attribution
+                        information required in Article 1, Paragraph 2 from the derivative works or related distribution
+                        copies.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ── NC ── -->
+            <div class="module-detail nc fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">Non-Commercial</span>
+                    <span class="module-detail-code">NC</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">Article 1: Definition and Prohibition of Commercial Acts</p>
+                    <p>The Licensor grants you the right to use this Software strictly for non-commercial purposes. You
+                    may not use this Software or its derivative works for any purpose aimed at obtaining commercial
+                    advantage or private monetary compensation. Prohibited commercial acts include, but are not limited
+                    to:</p>
+                    <ol>
+                        <li><strong>Direct Commercial Sales:</strong> Selling copies of this Software and its derivative
+                        works in any form or medium, or directly charging licensing fees, subscription fees, or usage
+                        fees for the Software.</li>
+                        <li><strong>Commercial Services and Operations:</strong> Providing this Software to end-users as
+                        the underlying architectural support or a core component of Software as a Service (SaaS),
+                        Platform as a Service (PaaS), cloud services, or managed services, and charging a fee.</li>
+                        <li><strong>Indirect Traffic Monetization:</strong> Embedding, integrating, or packaging this
+                        Software into commercial applications, websites, or smart hardware whose primary profit model
+                        relies on advertising display, traffic monetization, or data trading.</li>
+                        <li><strong>Internal Corporate Production Environments:</strong> Deploying this Software in the
+                        internal production environments or revenue-generating business processes of a for-profit entity,
+                        or using it to support its commercial operating systems.</li>
+                        <li><strong>Bundled Distribution and Sales:</strong> Bundling this Software for distribution with
+                        other proprietary products/services that require payment or have a commercial nature.</li>
+                    </ol>
+                    <p class="clause-title">Article 2: Scope and Independent Commercial Authorization (Exemption)</p>
+                    <ol>
+                        <li><strong>Scope:</strong> This module restricts not only the direct use of the original
+                        Software but also any derivative works developed based on this Software (regardless of whether
+                        the derivative work has undergone substantive modifications).</li>
+                        <li><strong>Exemption (Commercial Dual-Licensing):</strong> This clause does not preclude the
+                        possibility of commercial licensing for this Software. If you or your institution need to use
+                        this Software beyond the scope of the "non-commercial purposes" described above, you must contact
+                        the Licensor in advance to obtain and sign an independent "Commercial Authorization Agreement".
+                        Until such written exemption is obtained, any commercial use is strictly prohibited.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ── REF ── -->
+            <div class="module-detail ref fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">Reference-Only</span>
+                    <span class="module-detail-code">REF</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">Article 1: Core Rights Restrictions</p>
+                    <p>This Software is provided for the sole purpose of "learning and reference." The following strict
+                    restrictions are imposed on any form of use, copying, modification, and distribution of this
+                    Software:</p>
+                    <ol>
+                        <li><strong>Prohibition of Actual Use and Copying:</strong> You may not copy all or part of the
+                        source code of this Software into any other project; you may not deploy or run this Software in
+                        any environment (including but not limited to development, testing, or production environments);
+                        nor may you embed, integrate, or package this Software into other software or products in any
+                        form.</li>
+                        <li><strong>Reading and Learning Exception:</strong> You may only use this Software to read and
+                        study the design concepts, algorithm logic, system architecture, or technical solutions within
+                        the code. During the learning process, it is strictly prohibited to copy, extract, translate, or
+                        migrate any source code snippets for use in your personal projects, nor may you copy or imitate
+                        this Software as a reference implementation for your project development.</li>
+                        <li><strong>Prohibition of Plagiarism and Impersonation:</strong> It is strictly prohibited to
+                        publicly publish, display, distribute, or claim copyright over the original version of this
+                        Software, or a version that has only undergone non-substantive modifications (as defined in
+                        Article 2 of this module), as your own original work under your name or that of a third party.</li>
+                        <li><strong>Academic and Patent Restrictions:</strong> It is strictly prohibited to use all or
+                        the core code of this Software for any form of degree thesis writing, academic journal
+                        publication, scientific research project conclusion, academic competition entry, patent
+                        application, or software copyright registration.</li>
+                        <li><strong>Prohibition of Core Logic Extraction:</strong> It is strictly prohibited to
+                        independently extract the core algorithms, system architecture designs, or key business logic of
+                        this Software and repackage them for release as independent third-party code repositories, APIs,
+                        development libraries, or commercial products.</li>
+                    </ol>
+
+                    <p class="clause-title">Article 2: Determination of Substantive Modifications and Exceptions</p>
+                    <ol>
+                        <li><strong>Definition of Non-Substantive Modifications:</strong> Includes but is not limited to:
+                        evasive operations such as changing variable/function/class names, renaming package paths or
+                        namespaces, adjusting code formatting and indentation, splitting or merging source code files,
+                        translating or deleting comment content, modifying log output text, etc. The above operations
+                        are not considered original modifications and cannot bypass the restrictions of Article 1 of this
+                        module.</li>
+                        <li>
+                            <strong>Substantive Innovation Standard:</strong> For a derivative work to qualify for
+                            independent release, it must simultaneously meet all of the following conditions:
+                            <ol class="sub-clause">
+                                <li>It has added original code modules with independent logic and substantive business
+                                functions;</li>
+                                <li>The extent of modification or rewriting of the core logic code reaches 30% or more
+                                of the total volume of the original core code repository (substantive judgment is based
+                                on the independence and originality of the functional modules);</li>
+                                <li>The derivative work has substantial differences and clear functional boundaries from
+                                the original Software in terms of functional positioning, system architecture, or actual
+                                application scenarios.</li>
+                            </ol>
+                            Once the above standards are met, the derivative work may be released as an independent work,
+                            provided it complies with the requirements of the other modules you have selected (such as
+                            ATT, NC, SL).
+                        </li>
+                        <li><strong>Exceptions:</strong> For situations where citing the core code of this Software is
+                        strictly necessary due to specific scientific research cooperation or academic research, a
+                        special written authorization letter from the Licensor must be obtained in advance to be exempt
+                        from the restrictions in Article 1, Paragraph 4 above.</li>
+                    </ol>
+
+                    <div class="interaction-box">
+                        <p class="clause-title" style="margin-top:0;">Interaction Between REF and SL Modules</p>
+                        <p>The prohibition on "use, copying, modification, and distribution" in Article 1 of this module
+                        is the default general restriction.</p>
+                        <p>If you have simultaneously selected the SL (Same-License) module, and your derivative work
+                        fully meets the "Substantive Innovation Standard" defined in Article 2, Paragraph 2 of this
+                        module, then:</p>
+                        <p>The prohibition on "distribution" in Article 1 of this module is automatically lifted for
+                        that specific derivative work;</p>
+                        <p>The distribution of that derivative work must fully comply with the "Same-License"
+                        obligations stipulated in the SL module.</p>
+                        <p><strong>Important Notice:</strong> If the derivative work does not meet the "Substantive
+                        Innovation Standard," the prohibitive clauses of REF take precedence over the authorizing
+                        clauses of SL, and distribution in any form is not permitted.</p>
+                    </div>
+
+                    <p class="clause-title">Article 3: Scope of Application</p>
+                    <ol>
+                        <li>The binding effect of this module applies to any usage scenario of this Software. If the
+                        module combination you select includes REF, regardless of whether it also includes ATT, NC, or
+                        SL modules, you may not put this Software to any form of actual use (except for the learning and
+                        reading behaviors specified in Article 1, Paragraph 2 above).</li>
+                        <li>Even if the combination you select includes the SL (Same-License) module, if REF is present
+                        simultaneously, the "allow modification and distribution" clause of SL will be superseded by the
+                        "prohibit use and copying" clause of REF. In other words, the prohibitive clauses of REF take
+                        precedence over the authorizing clauses of SL.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ── SL ── -->
+            <div class="module-detail sl fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">Same-License</span>
+                    <span class="module-detail-code">SL</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">Article 1: Same-License Obligation</p>
+                    <p>If you create derivative works based on this Software (including but not limited to modifications,
+                    extensions, translations, platform adaptations, etc.), you must strictly comply with the following
+                    "Same-License" obligations:</p>
+                    <ol>
+                        <li><strong>Inheritance of Protocol for Release:</strong> The module collection contained in
+                        the derivative work must not be less than the module collection of the original Software, and no
+                        restrictions conflicting with the original license may be added. You may add extra modules to
+                        the original combination (e.g., expanding ATT to ATT-NC), but it is strictly prohibited to
+                        delete or replace any existing modules from the original combination.</li>
+                        <li><strong>Mandatory Source Code Disclosure:</strong> The complete source code of the
+                        derivative work must be provided simultaneously in a machine-readable format. The use of any
+                        form of code encryption, code obfuscation, or encapsulation into a black-box closed-source
+                        library is strictly prohibited.</li>
+                        <li><strong>Explicit License Declaration:</strong> You must explicitly declare the inherited
+                        DN-OSL module combination code in a prominent position on the derivative work's code repository
+                        homepage, official documentation, and release versions, and provide a valid link to the original
+                        license text.</li>
+                    </ol>
+                    <p class="clause-title">Article 2: Definition and Exemption of Distribution and Service Provision</p>
+                    <ol>
+                        <li>
+                            <strong>Trigger Conditions:</strong> The constraints of this module are triggered under the
+                            following circumstances:
+                            <ol class="sub-clause">
+                                <li><strong>Distribution:</strong> Transferring copies of the Software or derivative
+                                works to third parties;</li>
+                                <li><strong>Deployment / Service Provision:</strong> Providing the Software or its
+                                derivative works to external users in the form of network services (e.g., SaaS, API
+                                interfaces, etc.).</li>
+                            </ol>
+                        </li>
+                        <li><strong>Internal Use Exemption:</strong> If your modifications or derivative creations of
+                        this Software are strictly limited to personal local learning and testing, or are only deployed
+                        and used in a closed manner within your non-profit organization/team, and do not trigger any of
+                        the aforementioned distribution or external service provision behaviors, you are not required to
+                        fulfill the protocol inheritance and source code disclosure obligations stipulated in this
+                        module.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="divider-light fade-up"></div>
+
+            <!-- ── Complete Legal Provisions ── -->
+            <div class="legal-section fade-up">
+                <h2>Complete Legal Provisions</h2>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 1: Definitions</div>
+                    <div class="legal-article-body">
+                        <p><strong>"The Software"</strong>: Refers to all source code, object code, resource files,
+                        configuration files, documentation, and other related materials accompanied by this License.</p>
+                        <p><strong>"Licensor"</strong>: Refers to Dubhe Nexus Innovation and Research Studio.</p>
+                        <p><strong>"You"</strong>: Refers to the individual or entity exercising the rights granted by
+                        this License.</p>
+                        <p><strong>"Derivative Works"</strong>: Refers to works formed by modifying, translating,
+                        adapting, extending, reverse-engineering, or otherwise manipulating the Software, which contain
+                        the contents of the Software in whole or in part.</p>
+                        <p><strong>"Distribution"</strong>: Refers to providing copies of the Software or its derivative
+                        works to any third party through any medium.</p>
+                        <p><strong>"Commercial Use"</strong>: Refers to usage behaviors aimed at directly or indirectly
+                        obtaining economic benefits. The specific scope is detailed in the definition of the NC module.</p>
+                        <p><strong>"Non-Substantive Modification"</strong>: Refers to modifications that fail to meet
+                        the substantive innovation standard. The specific criteria are detailed in the definition of the
+                        REF module.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 2: Scope of Grant</div>
+                    <div class="legal-article-body">
+                        <p>Subject to your full compliance with all terms of this License, the Licensor grants you a
+                        worldwide, royalty-free, non-exclusive, non-transferable, and non-sublicensable right to:</p>
+                        <ol>
+                            <li>Run the Software;</li>
+                            <li>Copy the Software;</li>
+                            <li>Modify the Software (for the purpose of learning, improvement, or adaptation);</li>
+                            <li>Distribute source code copies of the Software or its derivative works.</li>
+                        </ol>
+                        <p>The scope of the above rights is restricted by the module combination you select. If the
+                        combination you select does not include the ATT module, you do not need to fulfill the
+                        attribution requirements; if it does not include the NC module, commercial use is permitted;
+                        and so forth.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 3: Restrictions</div>
+                    <div class="legal-article-body">
+                        <p>When using this Software, you must comply with the restrictions corresponding to all modules
+                        in the selected module combination. Detailed requirements for each module are found in the
+                        "Module List" above.</p>
+                        <p>If your usage behavior violates the terms of any applicable module, all rights granted to you
+                        by this License shall automatically terminate.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 4: Distribution Obligations</div>
+                    <div class="legal-article-body">
+                        <p>If you distribute the Software or its derivative works to a third party, you must:</p>
+                        <ol>
+                            <li>Include the complete text of this License with the distributed contents;</li>
+                            <li>Ensure the recipient is aware of the rights they enjoy and the obligations they must
+                            fulfill under this License;</li>
+                            <li>Not impose any additional restrictions on the recipient beyond the scope of this
+                            License.</li>
+                        </ol>
+                        <p>If the combination you select does not include the SL module, the derivative works do not
+                        need to be released under the same license, but must still comply with the requirements of the
+                        other selected modules (e.g., attribution obligations of ATT, non-commercial restrictions of NC,
+                        etc.).</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 5: Disclaimer of Warranty</div>
+                    <div class="legal-article-body">
+                        <p>The Software is provided "AS IS", without warranty of any kind, express or implied, including
+                        but not limited to the warranties of merchantability, fitness for a particular purpose, and
+                        non-infringement. The risk of using the Software is borne entirely by you.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 6: Limitation of Liability</div>
+                    <div class="legal-article-body">
+                        <p>In no event shall the Licensor and its contributors be liable for any direct, indirect,
+                        incidental, special, exemplary, or consequential damages arising out of the use or inability to
+                        use the Software, even if advised of the possibility of such damage.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 7: Termination</div>
+                    <div class="legal-article-body">
+                        <p>If you violate any terms of this License, all rights granted to you under this License will
+                        terminate automatically without further notice.</p>
+                        <p>Upon termination, you must immediately cease using and destroy or return all copies of the
+                        Software.</p>
+                        <p>If you obtain a written waiver from the Licensor after termination, your rights may be
+                        reinstated.</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">Article 8: Miscellaneous</div>
+                    <div class="legal-article-body">
+                        <p><strong>Severability:</strong> If any provision of this License is held to be invalid or
+                        unenforceable, the remaining provisions shall continue in full force and effect.</p>
+                        <p><strong>Waiver:</strong> The failure of the Licensor to exercise or enforce any right under
+                        this License does not constitute a waiver of such right.</p>
+                        <p><strong>Governing Law:</strong> The interpretation and application of this License shall be
+                        governed by the laws of the People's Republic of China.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="https://www.dubhenexus.org/images/Dubhe Nexus 1.1.jpg" alt="Logo" style="height: 45px; border-radius: 3px;">
+                        天枢互联创研工作室<br>Dubhe Nexus Innovation and Research Studio
+                    </div>
+                    <div class="footer-social" style="margin-top: 12px; display: flex; gap: 15px;">
+                        <a href="https://github.com/Dubhe-Nexus" target="_blank" rel="noopener noreferrer"
+                            style="color: #555; font-size: 18px; transition: color 0.3s;"><i
+                                class="fa-brands fa-github"></i></a>
+                        <a href="https://qm.qq.com/q/w6MtG2lsIM" target="_blank" rel="noopener noreferrer"
+                            style="color: #555; font-size: 18px; transition: color 0.3s;"><i
+                                class="fa-brands fa-qq"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us / 联系我们</h4>
+                    <a href="mailto:support@dubhenexus.org">support@dubhenexus.org</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div style="flex: 1; text-align: left;">
+                    &copy; 2026 Dubhe Nexus Innovation and Research Studio
+                </div>
+                <div style="flex: 1; text-align: right;">
+                    <span style="display: block; letter-spacing: 0.1em; color: #888;">创新 · 构建 · 迭代 · 因势而变</span>
+                    <span style="display: block; letter-spacing: 0.1em; color: #888;">Innovate. Construct. Iterate. Adapt.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const animatedElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+
+        animatedElements.forEach(el => observer.observe(el));
+        animatedElements.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                el.classList.add('revealed');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,896 @@
+<!-- Copyright (c) 2026 Dubhe Nexus Innovation and Research Studio -->
+<!-- Licensed under MIT License -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>天枢互联软件开源协议</title>
+    <link rel="icon" type="image/jpeg" href="https://www.dubhenexus.org/images/Dubhe Nexus 1.1.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,200;14..32,300;14..32,400;14..32,500;14..32,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://www.dubhenexus.org/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .licenses-hero {
+            position: relative;
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #efefef;
+            background: linear-gradient(165deg, #fafafa 0%, #ffffff 100%);
+        }
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 7rem 2rem 4rem;
+            width: 100%;
+            animation: fadeInUp 0.9s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .hero-eyebrow {
+            font-size: 13px;
+            letter-spacing: 0.4em;
+            color: #9b9b9b;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 400;
+            animation: slideInLeft 0.7s ease-out;
+        }
+        .hero-tag {
+            font-size: 14px;
+            letter-spacing: 0.4em;
+            color: #9b9b9b;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .hero-title {
+            font-size: clamp(2.4rem, 7vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #111;
+            animation: fadeInUp 0.7s ease-out 0.05s both;
+        }
+        .hero-title .sub {
+            display: block;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            font-weight: 300;
+            color: #888;
+            letter-spacing: 0.1em;
+            margin-top: 0.6rem;
+        }
+        .hero-desc {
+            max-width: 48rem;
+            margin-top: 1.8rem;
+            animation: fadeInUp 0.7s ease-out 0.1s both;
+        }
+        .hero-desc p {
+            font-size: 1rem;
+            color: rgba(0, 0, 0, 0.65);
+            line-height: 1.5;
+            font-weight: 300;
+            border-left: 2px solid #cfcfcf;
+            padding-left: 1.25rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .fade-up.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── 模块卡片 ── */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        @media (max-width: 900px) {
+            .module-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 520px) {
+            .module-grid { grid-template-columns: 1fr; }
+        }
+
+        .module-card {
+            border: 1px solid #ededed;
+            border-radius: 1rem;
+            padding: 1.5rem 1.2rem 1.2rem;
+            background: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card:hover {
+            border-color: #ccc;
+            box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 1rem 1rem 0 0;
+        }
+        .module-card.att::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .module-card.nc::before  { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .module-card.ref::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .module-card.sl::before  { background: linear-gradient(90deg, #10b981, #34d399); }
+
+        .module-badge {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.7rem;
+            border-radius: 6px;
+            margin-bottom: 0.7rem;
+        }
+        .module-card.att .module-badge { background: #eff6ff; color: #2563eb; }
+        .module-card.nc  .module-badge { background: #f5f3ff; color: #7c3aed; }
+        .module-card.ref .module-badge { background: #fffbeb; color: #d97706; }
+        .module-card.sl  .module-badge { background: #ecfdf5; color: #059669; }
+
+        .module-fullname {
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .module-desc {
+            font-size: 0.82rem;
+            color: #444;
+            line-height: 1.55;
+            font-weight: 320;
+        }
+        .module-desc .cn {
+            display: block;
+            color: #777;
+            font-size: 0.78rem;
+            margin-top: 0.3rem;
+            font-weight: 300;
+        }
+
+        .ref-sl-note {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0 2.5rem;
+            border-radius: 1rem;
+        }
+        .ref-sl-note h4 {
+            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            color: #92400e;
+        }
+        .ref-sl-note p {
+            font-size: 0.82rem;
+            color: #78350f;
+            line-height: 1.6;
+        }
+        .ref-sl-note strong {
+            font-weight: 500;
+        }
+
+        .ref-sl-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 0.75rem;
+            padding: 1rem 1.3rem;
+            margin: 1.5rem 0;
+        }
+        .ref-sl-box p {
+            font-size: 0.8rem;
+            color: #78350f;
+            line-height: 1.6;
+            margin-bottom: 0.3rem;
+        }
+        .ref-sl-box p.clause-title {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #92400e;
+        }
+
+        /* ── 组合标签列表 ── */
+        .combo-list {
+            margin: 2rem 0;
+        }
+        .combo-list h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+        }
+        .combo-table-wrap {
+            overflow-x: auto;
+            border-radius: 0.75rem;
+            border: 1px solid #efefef;
+            background: #fff;
+            margin: 1.2rem 0;
+        }
+        .combo-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            min-width: 400px;
+        }
+        .combo-table th {
+            background: #fafafa;
+            font-weight: 450;
+            padding: 0.65rem 1rem;
+            text-align: left;
+            color: #444;
+            border-bottom: 2px solid #e8e8e8;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+        .combo-table td {
+            padding: 0.55rem 1rem;
+            border-bottom: 1px solid #f3f3f3;
+            color: #555;
+            font-size: 0.82rem;
+        }
+        .combo-table tr:last-child td { border-bottom: none; }
+        .combo-table tr:hover td { background: #fafafa; }
+        .combo-table .id-col {
+            font-weight: 500;
+            color: #222;
+            white-space: nowrap;
+        }
+        .combo-table .dot-row {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .combo-table .dot-sm {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+        .combo-table .dot-sm.att { background: #3b82f6; }
+        .combo-table .dot-sm.nc  { background: #8b5cf6; }
+        .combo-table .dot-sm.ref { background: #f59e0b; }
+        .combo-table .dot-sm.sl  { background: #10b981; }
+        .combo-table .badge-sm {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .combo-table .badge-sm.att { background: #eff6ff; color: #2563eb; }
+        .combo-table .badge-sm.nc  { background: #f5f3ff; color: #7c3aed; }
+        .combo-table .badge-sm.ref { background: #fffbeb; color: #d97706; }
+        .combo-table .badge-sm.sl  { background: #ecfdf5; color: #059669; }
+
+        /* ── 模块详细条款 ── */
+        .module-detail {
+            background: #ffffff;
+            border: 1px solid #ededed;
+            border-radius: 1.25rem;
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 2.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+        .module-detail:hover {
+            border-color: #d4d4d4;
+            box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+        }
+        .module-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 1.25rem 0 0 1.25rem;
+        }
+        .module-detail.att::before { background: linear-gradient(180deg, #3b82f6, #93c5fd); }
+        .module-detail.nc::before  { background: linear-gradient(180deg, #8b5cf6, #c4b5fd); }
+        .module-detail.ref::before { background: linear-gradient(180deg, #f59e0b, #fcd34d); }
+        .module-detail.sl::before  { background: linear-gradient(180deg, #10b981, #6ee7b7); }
+        .module-detail-header {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+        .module-detail-name {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        .module-detail-code {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #5a5a5a;
+            font-weight: 500;
+        }
+        .module-detail.att .module-detail-code { background: #eff6ff; color: #2563eb; }
+        .module-detail.nc  .module-detail-code { background: #f5f3ff; color: #7c3aed; }
+        .module-detail.ref .module-detail-code { background: #fffbeb; color: #d97706; }
+        .module-detail.sl  .module-detail-code { background: #ecfdf5; color: #059669; }
+        .module-detail-body {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: #2d2d2d;
+        }
+        .module-detail-body p {
+            margin-bottom: 0.8rem;
+        }
+        .module-detail-body ol, .module-detail-body ul {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .module-detail-body li {
+            margin-bottom: 0.5rem;
+            font-weight: 320;
+        }
+        .module-detail-body .clause-title {
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        .module-detail-body .sub-clause {
+            padding-left: 1.5rem;
+            list-style-type: lower-alpha;
+        }
+
+        /* ── 完整法律条款 ── */
+        .legal-section {
+            background: #fbfbfb;
+            border: 1px solid #ededed;
+            border-radius: 1.25rem;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0;
+        }
+        .legal-section h2 {
+            font-size: 1.5rem;
+            font-weight: 350;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.8rem;
+            color: #111;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 1rem;
+        }
+        .legal-article {
+            margin-bottom: 2rem;
+        }
+        .legal-article-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+        }
+        .legal-article-body {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: #3a3a3a;
+        }
+        .legal-article-body p {
+            margin-bottom: 0.5rem;
+        }
+        .legal-article-body ol {
+            padding-left: 1.5rem;
+        }
+        .legal-article-body li {
+            margin-bottom: 0.4rem;
+            font-weight: 320;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: #5a5a5a;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+        .back-link:hover {
+            color: #000;
+            gap: 0.6rem;
+        }
+
+        .divider-light {
+            height: 1px;
+            background: #efefef;
+            margin: 2rem 0;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #fff;
+            border-top: 1px solid #efefef;
+            padding: 4rem 2rem 2.5rem;
+            margin-top: 2rem;
+        }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        .footer-brand .footer-logo {
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 0.75rem;
+        }
+        .footer-brand p {
+            font-size: 0.75rem;
+            color: #777;
+            max-width: 280px;
+            line-height: 1.5;
+        }
+        .footer-contact { text-align: right; }
+        @media (max-width: 768px) {
+            .footer-contact { text-align: left; }
+        }
+        .footer-contact h4 {
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        .footer-contact a {
+            display: block;
+            font-size: 0.875rem;
+            color: #3a3a3a;
+            text-decoration: none;
+            margin-bottom: 0.6rem;
+            transition: all 0.3s;
+        }
+        .footer-contact a:hover {
+            color: #000;
+            transform: translateX(-4px);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: flex-end;
+        }
+        @media (max-width: 768px) {
+            .footer-nav { justify-content: flex-start; }
+        }
+        .footer-nav a {
+            font-size: 11px;
+            color: #888;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s;
+        }
+        .footer-nav a:hover::after { width: 100%; }
+        .footer-nav a:hover { color: #000; }
+        .footer-copyright {
+            max-width: 1280px;
+            margin: 2.5rem auto 0;
+            padding-top: 1.8rem;
+            border-top: 1px solid #ececec;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 10px;
+            color: #aaa;
+        }
+        @media (max-width: 768px) {
+            .footer-copyright { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 768px) {
+            .module-detail { padding: 1.5rem; }
+            .module-detail-name { font-size: 1.15rem; }
+            .legal-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="glass-nav" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="https://www.dubhenexus.org/images/Dubhe Nexus Web.jpg" alt="Logo">
+            </a>
+             <div class="nav-links">
+                <a href="index.html" class="lang-switch"><i data-lucide="languages"></i>ENG</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="licenses-hero">
+        <div class="hero-content">
+            <div class="hero-tag">开源软件许可协议</div>
+            <h1 class="hero-title">
+                天枢互联软件开源协议
+            </h1>
+            <div class="hero-desc">
+                <p>天枢互联开源许可协议是一套模块化的开源软件许可框架。本许可协议旨在平衡开放共享与权益保护，特别适合注重知识产权归属、希望限制商业滥用、维护原创生态的开发者与工作室使用。</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+
+            <div class="combo-list fade-up">
+                <h3>可用组合</h3>
+                <div class="combo-table-wrap">
+                    <table class="combo-table">
+                        <thead>
+                            <tr>
+                                <th>许可标识</th>
+                                <th>包含模块</th>
+                                <th>含义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="id-col">ATT</td><td><span class="badge-sm att">ATT</span></td><td>署名</td></tr>
+                            <tr><td class="id-col">REF</td><td><span class="badge-sm ref">REF</span></td><td>仅限参考</td></tr>
+                            <tr><td class="id-col">NC</td><td><span class="badge-sm nc">NC</span></td><td>禁止商用</td></tr>
+                            <tr><td class="id-col">SL</td><td><span class="badge-sm sl">SL</span></td><td>同源共享</td></tr>
+                            <tr><td class="id-col">ATT-NC</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span></td><td>署名+禁止商用</td></tr>
+                            <tr><td class="id-col">ATT-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm sl">SL</span></td><td>署名+同源共享</td></tr>
+                            <tr><td class="id-col">REF-SL</td><td><span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>仅限参考+同源共享</td></tr>
+                            <tr><td class="id-col">ATT-NC-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm sl">SL</span></td><td>署名+禁止商用+同源共享</td></tr>
+                            <tr><td class="id-col">ATT-NC-REF</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span></td><td>署名+禁止商用+仅限参考</td></tr>
+                            <tr><td class="id-col">NC-REF-SL</td><td><span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>禁止商用+仅限参考+同源共享</td></tr>
+                            <tr><td class="id-col">ATT-NC-REF-SL</td><td><span class="badge-sm att">ATT</span> <span class="badge-sm nc">NC</span> <span class="badge-sm ref">REF</span> <span class="badge-sm sl">SL</span></td><td>署名+禁止商用+仅限参考+同源共享</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="divider-light fade-up"></div>
+
+            <div class="module-detail att fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">署名 <span style="font-weight:300;color:#888;font-size:0.9rem;">Attribution</span></span>
+                    <span class="module-detail-code">ATT</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">第一条 授权条款与限制</p>
+                    <p>在遵守本许可证所有条款的前提下，许可方（天枢互联创研工作室）授予您使用、复制、修改及分发本软件的权利。您在行使上述权利时，必须严格履行以下署名义务：</p>
+                    <ol>
+                        <li><strong>保留声明</strong>：您必须在所有分发副本（包括目标代码和源代码，无论是否经过修改）中，完整保留原始的著作权声明、本许可证文本、免责声明及任何附加的权利通知。</li>
+                        <li><strong>来源标明</strong>：您必须在使用本软件的衍生作品或分发副本中的合理且显著位置（如 README 文件、软件"关于"页面或用户界面底栏），清晰声明软件原始来源，并保留指向"天枢互联创研工作室（Dubhe Nexus Innovation and Research Studio）"的超链接或标识。在无法提供超链接的环境下（如离线分发副本、实体介质等），应以文本形式完整标注许可方全称及官方 URL。</li>
+                        <li><strong>变更明示</strong>：若您对本软件的源代码进行了任何形式的修改，必须在被修改文件的显著位置（如文件头注释）以客观陈述的方式注明修改的内容、修改者身份及修改的具体日期。</li>
+                        <li><strong>禁止不当背书</strong>：除非获得单独的书面许可，您在行使署名权时，不得以任何明示或暗示的方式，使受众误认许可方对您的修改行为、衍生作品或使用场景提供赞助、认可或官方背书。</li>
+                    </ol>
+                    <p class="clause-title" style="margin-top:1rem;">第二条 适用范围与例外豁免</p>
+                    <ol>
+                        <li><strong>适用范围</strong>：本模块的约束效力及于对本软件的任何形式的公开展示、分发、部署及再创作行为。</li>
+                        <li><strong>例外豁免</strong>：若许可方因衍生作品涉及违法、侵权、歧视等不当内容，或不愿与该衍生作品产生关联而主动提出移除要求，您必须在合理可行的范围内，从衍生作品或相关分发副本中移除上述第一条第 2 款要求的相关归属信息。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="module-detail nc fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">禁止商用 <span style="font-weight:300;color:#888;font-size:0.9rem;">Non-Commercial</span></span>
+                    <span class="module-detail-code">NC</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">第一条 商业行为的界定与禁止</p>
+                    <p>许可方仅授予您将本软件用于非商业目的的权利。您不得将本软件及其衍生作品用于任何旨在获取商业优势或私人金钱报酬的目的。被禁止的商业行为包括但不限于：</p>
+                    <ol>
+                        <li><strong>直接商业销售</strong>：以任何形式、任何媒介出售本软件及衍生作品的副本，或直接收取软件的授权费、订阅费或使用费。</li>
+                        <li><strong>商业化服务与运营</strong>：将本软件作为软件即服务（SaaS）、平台即服务（PaaS）、云服务或托管服务的底层架构支持或核心组件，向终端用户提供并收取费用。</li>
+                        <li><strong>间接流量变现</strong>：将本软件嵌入、整合或打包至以广告展示、流量变现或数据交易为主要盈利模式的商业应用、网站或智能硬件中。</li>
+                        <li><strong>企业内部生产环境</strong>：将本软件部署于营利性实体的内部生产环境、创收业务流程或用于支持其商业运营系统。</li>
+                        <li><strong>捆绑分发销售</strong>：将本软件与其他需要付费购买或具有商业性质的专有产品/服务进行捆绑分发。</li>
+                    </ol>
+                    <p class="clause-title" style="margin-top:1rem;">第二条 适用范围与独立商业授权（豁免）</p>
+                    <ol>
+                        <li><strong>适用范围</strong>：本模块不仅约束本软件的原版直接使用，同样约束基于本软件开发的任何衍生作品（无论该衍生作品是否进行了实质性修改）。</li>
+                        <li><strong>例外豁免（商业双重许可）</strong>：本条款不排除本软件进行商业化授权的可能性。若您或您所在的机构需要将本软件用于超出上述"非商业目的"的范畴，必须事先联系许可方，获取并签署独立的《商业授权协议》。在获得该书面豁免前，一律视为禁止商业使用。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="module-detail ref fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">仅限参考 <span style="font-weight:300;color:#888;font-size:0.9rem;">Reference-Only</span></span>
+                    <span class="module-detail-code">REF</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">第一条 核心权利限制</p>
+                    <p>本软件以"学习参考"为唯一目的提供，对本软件的任何形式的使用、复制、修改与分发施加以下严格限制：</p>
+                    <ol>
+                        <li><strong>禁止实际使用与复制</strong>：您不得将本软件的全部或部分源代码复制到任何其他项目中，不得将本软件部署、运行于任何环境（包括但不限于开发环境、测试环境或生产环境），也不得以任何形式将本软件嵌入、集成或打包至其他软件或产品中。</li>
+                        <li><strong>学习阅读例外</strong>：您仅可将本软件用于阅读、学习代码中的设计思想、算法逻辑、系统架构或技术方案。学习过程中，严禁将任何源代码片段复制、摘录、翻译或迁移至您个人的项目中使用，亦不得将本软件作为您项目开发的参考实现进行模仿复制。</li>
+                        <li><strong>禁止抄袭与冒名</strong>：严禁以您个人或第三方的名义，将本软件的原始版本或仅经非实质性修改（定义见本模块第二条）的版本，作为您自己的原创作品进行公开发布、展示、分发或声明著作权。</li>
+                        <li><strong>学术与专利限制</strong>：严禁将本软件的全部或核心代码用于任何形式的学位论文撰写、学术期刊发表、科研项目结题、学术竞赛参赛、专利申请及软件著作权登记。</li>
+                        <li><strong>禁止核心逻辑剥离</strong>：严禁单独提取本软件的核心算法、系统架构设计或关键业务逻辑，将其重新封装为独立的第三方代码仓库、API、开发库或商业产品进行发布。</li>
+                    </ol>
+
+                    <p class="clause-title" style="margin-top:1rem;">第二条 实质性修改的认定与例外</p>
+                    <ol>
+                        <li>
+                            <strong>非实质性修改界定</strong>：包括但不限于：更改变量名/函数名/类名、重命名包路径或命名空间、调整代码格式与缩进、拆分或合并源代码文件、翻译或删除注释内容、修改日志输出文本等规避性操作。上述操作不视为具有原创性的修改，无法规避本模块第一条的限制。
+                        </li>
+                        <li>
+                            <strong>实质性创新标准</strong>：若衍生作品需获得独立发布资格，须同时满足以下全部条件：
+                            <ol class="sub-clause">
+                                <li>新增了具备独立逻辑与实质业务功能的原创代码模块；</li>
+                                <li>核心逻辑代码的修改或重写幅度达到原核心代码仓库总量的 30% 及以上（以功能模块的独立性和原创性为实质判断标准）；</li>
+                                <li>该衍生作品在功能定位、系统架构或实际应用场景上，与原软件存在实质性差异与明显的功能边界区分。</li>
+                            </ol>
+                            满足上述标准后，衍生作品方可作为独立作品发布，但须遵守您所选择的其他模块（如 ATT、NC、SL）的相应要求。
+                        </li>
+                        <li><strong>例外豁免</strong>：对于因特定科研合作或学术研究确需引用本软件核心代码的情况，必须事先获得许可方的专项书面许可授权书，方可豁免上述第一条第 4 款的限制。</li>
+                    </ol>
+
+                    <div class="ref-sl-box">
+                        <p class="clause-title" style="margin-top:0;">REF 与 SL 模块的组合说明</p>
+                        <p>本模块第一条对"使用、复制、修改与分发"的禁止，属于默认通用限制。</p>
+                        <p>若您同时选择了 SL（同源共享）模块，且您创作的衍生作品已完全满足本模块第二条第 2 款所定义的"实质性创新标准"，则：</p>
+                        <p>本模块第一条对"分发"的禁止性限制，对该特定衍生作品自动解除；</p>
+                        <p>该衍生作品的分发行为，须完全遵守 SL 模块所规定的"同源共享"义务。</p>
+                        <p><strong>重要提示</strong>：若衍生作品未达到"实质性创新标准"，REF 的禁止性条款优先于 SL 的授权性条款，任何形式的分发均不被允许。</p>
+                    </div>
+
+                    <p class="clause-title" style="margin-top:1rem;">第三条 适用范围</p>
+                    <ol>
+                        <li>本模块的约束效力及于本软件的任何使用场景。若您选择的模块组合中包含 REF，则无论是否同时包含 ATT、NC 或 SL 模块，您均不得对本软件进行任何形式的实际使用（除上述第一条第 2 款所规定的学习阅读行为外）。</li>
+                        <li>即使您选择的组合中包含 SL（同源共享）模块，若 REF 同时存在，SL 的"允许修改后分发"条款将被 REF 的"禁止使用与复制"条款优先覆盖。换言之，REF 的禁止性条款优先于 SL 的授权性条款。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="module-detail sl fade-up">
+                <div class="module-detail-header">
+                    <span class="module-detail-name">同源共享 <span style="font-weight:300;color:#888;font-size:0.9rem;">Same-License</span></span>
+                    <span class="module-detail-code">SL</span>
+                </div>
+                <div class="module-detail-body">
+                    <p class="clause-title">第一条 同源共享义务</p>
+                    <p>若您基于本软件创作了衍生作品（包括但不限于修改、扩展、翻译、平台适配等），您必须严格遵守以下"同源共享"义务：</p>
+                    <ol>
+                        <li><strong>同协议继承发布</strong>：衍生作品所包含的模块集合必须不低于原软件的模块集合，且不得增加与原协议冲突的限制。您可以在原组合基础上增加额外的模块（例如将 ATT 扩展为 ATT-NC），但严禁删除或替换原组合中的任何既有模块。</li>
+                        <li><strong>源代码强制公开</strong>：必须同时以机器可读的形式提供该衍生作品的完整源代码。严禁使用任何形式的代码加密、代码混淆或将其封装为黑盒闭源库。</li>
+                        <li><strong>许可证显式声明</strong>：必须在衍生作品的代码仓库主页、官方文档及发行版的显著位置，明确声明该作品继承的 DN-OSL 模块组合代码，并提供指向原许可证文本的有效链接。</li>
+                    </ol>
+                    <p class="clause-title" style="margin-top:1rem;">第二条 分发与服务提供的界定及豁免</p>
+                    <ol>
+                        <li>
+                            <strong>触发条件</strong>：本模块的约束条件在以下情形下触发：
+                            <ol class="sub-clause">
+                                <li><strong>分发</strong>：向第三方转移软件或衍生作品的副本；</li>
+                                <li><strong>部署/服务提供</strong>：将软件或其衍生作品以网络服务（如 SaaS、API 接口等）形式向外部用户提供。</li>
+                            </ol>
+                        </li>
+                        <li><strong>内部使用豁免</strong>：若您对本软件的修改或衍生创作仅限于个人本地学习测试，或仅在您所在的非营利性组织/团队内部进行封闭部署和使用，且未触发上述任何分发或对外提供服务的行为，则您无需履行本模块规定的同协议发布与源代码公开义务。</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="divider-light fade-up"></div>
+
+            <div class="legal-section fade-up">
+                <h2>Complete Legal Provisions / 完整法律条款</h2>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第1条 定义</div>
+                    <div class="legal-article-body">
+                        <p><strong>"本软件"</strong>：指本许可证所附的所有源代码、目标代码、资源文件、配置文件、文档及其他相关材料。</p>
+                        <p><strong>"许可方"</strong>：指天枢互联创研工作室（Dubhe Nexus Innovation and Research Studio）。</p>
+                        <p><strong>"您"</strong>：指行使本许可证所授予权利的个人或实体。</p>
+                        <p><strong>"衍生作品"</strong>：指基于本软件进行修改、翻译、改编、扩展、反向工程或其他方式形成的作品，其整体或部分包含本软件的内容。</p>
+                        <p><strong>"分发"</strong>：指通过任何媒介向任何第三方提供本软件或其衍生作品的副本。</p>
+                        <p><strong>"商业用途"</strong>：指以直接或间接获取经济利益为目的的使用行为，具体范围详见模块 NC 的定义。</p>
+                        <p><strong>"非实质性修改"</strong>：指未达到实质性创新标准的修改，具体认定标准详见模块 REF 的定义。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第2条 授权范围</div>
+                    <div class="legal-article-body">
+                        <p>在您完全遵守本许可证所有条款的前提下，许可方授予您全球范围内、免版税、非独占、不可转让、不可再许可的权利，以：</p>
+                        <ol>
+                            <li>运行本软件；</li>
+                            <li>复制本软件；</li>
+                            <li>修改本软件（以学习、改进或适配为目的）；</li>
+                            <li>分发本软件或其衍生作品的源代码副本。</li>
+                        </ol>
+                        <p>上述权利的范围受您所选择的模块组合限制。若您选择的组合中不包含 ATT 模块，则您无需满足署名要求；若不包含 NC 模块，则允许商业使用；依此类推。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第3条 限制条款</div>
+                    <div class="legal-article-body">
+                        <p>您在使用本软件时，必须遵守所选模块组合中所有模块对应的限制条件。各模块的详细要求见上文"模块清单"。</p>
+                        <p>若您的使用行为违反了任一适用模块的条款，则本许可证授予您的全部权利将自动终止。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第4条 分发义务</div>
+                    <div class="legal-article-body">
+                        <p>如果您将本软件或其衍生作品分发给第三方，您必须：</p>
+                        <ol>
+                            <li>随分发内容附带完整的本许可证文本；</li>
+                            <li>确保接收方知晓其根据本许可证享有的权利和应尽的义务；</li>
+                            <li>不向接收方施加超出本许可证范围的额外限制。</li>
+                        </ol>
+                        <p>若您选择的组合中不包含 SL 模块，则衍生作品无需以同协议发布，但仍须遵守其他已选模块的要求（如 ATT 的署名义务、NC 的非商业限制等）。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第5条 免责声明</div>
+                    <div class="legal-article-body">
+                        <p>本软件按"现状"（AS IS）提供，不附带任何明示或暗示的担保，包括但不限于对适销性、特定用途适用性和非侵权性的担保。本软件的使用风险由您自行承担。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第6条 责任限制</div>
+                    <div class="legal-article-body">
+                        <p>在任何情况下，许可方及其贡献者均不对因使用或无法使用本软件而产生的任何直接、间接、偶然、特殊、惩罚性或后果性损害承担责任，即使已被告知此类损害的可能性。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第7条 终止</div>
+                    <div class="legal-article-body">
+                        <p>若您违反本许可证的任何条款，本许可证授予您的所有权利将自动终止，无需另行通知。</p>
+                        <p>终止后，您必须立即停止使用并销毁或归还本软件的所有副本。</p>
+                        <p>若您在终止后获得许可方的书面豁免，则权利可以恢复。</p>
+                    </div>
+                </div>
+
+                <div class="legal-article">
+                    <div class="legal-article-title">第8条 其他</div>
+                    <div class="legal-article-body">
+                        <p><strong>可分性</strong>：若本许可证的任何条款被认定为无效或不可执行，其余条款仍完全有效。</p>
+                        <p><strong>放弃</strong>：许可方未能行使或执行本许可证的任何权利，不构成对该权利的放弃。</p>
+                        <p><strong>管辖法律</strong>：本许可证的解释和适用，适用中华人民共和国法律。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="https://www.dubhenexus.org/images/Dubhe Nexus 1.1.jpg" alt="Logo" style="height: 45px; border-radius: 3px;">
+                        天枢互联创研工作室<br>Dubhe Nexus Innovation and Research Studio
+                    </div>
+                    <div class="footer-social" style="margin-top: 12px; display: flex; gap: 15px;">
+                        <a href="https://github.com/Dubhe-Nexus" target="_blank" rel="noopener noreferrer"
+                            style="color: #555; font-size: 18px; transition: color 0.3s;"><i
+                                class="fa-brands fa-github"></i></a>
+                        <a href="https://qm.qq.com/q/w6MtG2lsIM" target="_blank" rel="noopener noreferrer"
+                            style="color: #555; font-size: 18px; transition: color 0.3s;"><i
+                                class="fa-brands fa-qq"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us / 联系我们</h4>
+                    <a href="mailto:support@dubhenexus.org">support@dubhenexus.org</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div style="flex: 1; text-align: left;">
+                    &copy; 2026 Dubhe Nexus Innovation and Research Studio
+                </div>
+                <div style="flex: 1; text-align: right;">
+                    <span style="display: block; letter-spacing: 0.1em; color: #888;">创新 · 构建 · 迭代 · 因势而变</span>
+                    <span style="display: block; letter-spacing: 0.1em; color: #888;">Innovate. Construct. Iterate. Adapt.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const animatedElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+
+        animatedElements.forEach(el => observer.observe(el));
+        animatedElements.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                el.classList.add('revealed');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
